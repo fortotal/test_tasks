@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>flask-bootstrap example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  </head>
+  <body>
+  <form>
+  <p>Выбери породу:</p>
+  <div>
+    <input type="radio" id="breedChoice1"
+     name="breed" value="Рыжий">
+    <label for="contactChoice1">Рыжый</label>
+
+    <input type="radio" id="breedChoice2"
+     name="breed" value="Не рыжий">
+    <label for="contactChoice2">Не рыжий</label>
+
+    <input type="radio" id="breedChoice3"
+     name="breed" value="Сатана">
+    <label for="contactChoice3">Сатана</label>
+  </div>
+
+  <p>Выбери возраст:</p>
+  <div>
+    <input type="radio" id="ageChoice1"
+     name="age" value="0">
+    <label for="ageChoice1">Котенок (меньше 12 месяцев)</label>
+
+    <input type="radio" id="ageChoice2"
+     name="age" value="1">
+    <label for="ageChoice2">Взрослый кот (больше 12 месяцев)</label>
+
+  </div>
+  <div>
+    <button type="submit">Отправить</button>
+    <button href="">Сбросить</button>
+  </div>
+  </form>
+
+    <div class="container">
+      {{ pagination.links }}
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for image in images %}
+            <tr>
+              <td>{{ loop.index + (page - 1) * per_page }}</td>
+              <td>
+                <a href="http://127.0.0.1:5000/profile?name={{image.nickname}}">
+                <img width="200px" height="200px" src="{{image.img_path}}" />
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {{ pagination.links }}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+version: '2'
+services:
+  db:
+      image: postgres:10-alpine
+      expose:
+        - "5433" # Publishes 5433 to other containers but NOT to host machine
+      ports:
+          - "5433:5433"
+      environment:
+        - POSTGRES_DB=db
+        - POSTGRES_USER=user
+        - POSTGRES_PASSWORD=password
+      command: -p 5433
+
+  webapp:
+      build: .
+      depends_on: [db]
+      environment:
+        - DEBUG=False
+      ports:
+        - "5000:5000"
+      links:
+        - "db:my_db"
